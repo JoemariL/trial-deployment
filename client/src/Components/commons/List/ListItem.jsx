@@ -9,6 +9,7 @@ const ListItem = ({
   icon,
   onClick = () => {},
   loading = false,
+  addEnable = false,
   addItem,
 }) => {
   return (
@@ -30,13 +31,17 @@ const ListItem = ({
     >
       {icon}
 
-      <div className="w-full flex flex-row items-center gap-x-3">
+      <div
+        className={classnames(
+          addEnable ? "w-full flex flex-row items-center gap-x-3" : ""
+        )}
+      >
         <div className="flex flex-col">
           <span className="font-bold">{label}</span>
           <span className="text-sm">{subtitle}</span>
         </div>
 
-        {addItem}
+        {addEnable && addItem}
       </div>
     </div>
   );

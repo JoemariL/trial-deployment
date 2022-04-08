@@ -38,6 +38,7 @@ const GuestResult = ({
           icon={<Icon icon={<GoReport className="h-6 w-6" />} />}
           label="Entry result"
           textColor="white"
+          addEnable
           addItem={
             <div className="ml-auto cursor-pointer" onClick={handleAccordion}>
               {accordion ? (
