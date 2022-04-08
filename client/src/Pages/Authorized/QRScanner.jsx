@@ -28,7 +28,6 @@ function QRScanner() {
   }, [auth]);
 
   const handleSubmitQR = async (qrCode) => {
-    setIsLoading(true);
     const hdfID = localStorage.getItem("hdf");
     const payload = {
       hdfID,
@@ -39,10 +38,8 @@ function QRScanner() {
     // TODO: Success message.
     if (response.hasOwnProperty("message")) {
       console.log(response.message);
-      setIsLoading(false);
     } else {
       localStorage.removeItem("hdf");
-      setIsLoading(false);
       setScanSuccessful(true);
     }
   };

@@ -36,8 +36,7 @@ const LoginModule = () => {
     // TODO: SUCCESS, ERROR, LOADING.
     if (response.hasOwnProperty("message")) {
       alert(response.message);
-    }
-    if (response && isMounted.current) {
+    } else { 
       setAuth({ access: response });
       navigate("/main", { replace: true });
     }
