@@ -175,7 +175,7 @@ const ResultView = ({
           label="SCAN QR CODE"
           roundedFull
           onClick={onClickQR}
-          disabled={campusName === "--" ? true : false}
+          disabled={entryDate != null ? true : false}
         />
       </div>
     </div>

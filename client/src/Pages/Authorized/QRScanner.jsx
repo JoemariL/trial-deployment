@@ -41,9 +41,9 @@ function QRScanner() {
       console.log(response.message);
       setIsLoading(false);
     } else {
-      setScanSuccessful(true);
       localStorage.removeItem("hdf");
       setIsLoading(false);
+      setScanSuccessful(true);
     }
   };
 
