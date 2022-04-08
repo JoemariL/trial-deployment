@@ -3,7 +3,7 @@ axios.defaults.withCredentials = true;
 axios.defaults.useCredentials = true;
 
 const API = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://slu-triage-app.herokuapp.com",
   withCredentials: true,
   credentials: "include",
 });
