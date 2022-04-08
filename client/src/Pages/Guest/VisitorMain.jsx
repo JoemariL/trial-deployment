@@ -46,6 +46,7 @@ function VisitorMain() {
       {dribble && (
         <HamburgerMenu
           onReturnClick={handleDribble}
+          disabled={entry_date}
           onReturnIntro={(e) => {
             e.preventDefault();
             navigate("/");

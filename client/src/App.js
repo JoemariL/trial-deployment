@@ -15,9 +15,15 @@ import {
   Vaccine,
   VaccineFormPage,
   QRScanner,
+  UserQRSuccess,
   Result,
 } from "./Pages/Authorized";
-import { VisitorFormPage, VisitorMain, VisitorQR } from "./Pages/Guest";
+import {
+  VisitorFormPage,
+  VisitorMain,
+  VisitorQR,
+  VisitorQRSuccess,
+} from "./Pages/Guest";
 
 function App() {
   return (
@@ -39,6 +45,11 @@ function App() {
             <Route element={<VisitorAuth />}>
               <Route exact path="/visitor/main" element={<VisitorMain />} />
               <Route exact path="/visitor/qr-scanner" element={<VisitorQR />} />
+              <Route
+                exact
+                path="/visitor/qr-scanner/success"
+                element={<VisitorQRSuccess />}
+              />
             </Route>
 
             <Route element={<RequireAuth />}>
@@ -52,6 +63,11 @@ function App() {
                 element={<VaccineFormPage />}
               />
               <Route exact path="/qr-scanner" element={<QRScanner />} />
+              <Route
+                exact
+                path="/qr-scanner/success"
+                element={<UserQRSuccess />}
+              />
               <Route exact path="/result" element={<Result />} />
             </Route>
           </Route>

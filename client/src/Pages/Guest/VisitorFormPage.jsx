@@ -29,7 +29,7 @@ function VisitorFormPage() {
             fixedTop
             onReturnClick={(e) => {
               e.preventDefault();
-              navigate("/");
+              navigate("/visitor/main");
             }}
           />
 

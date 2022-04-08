@@ -4,13 +4,11 @@ import classnames from "classnames";
 import { QrReader } from "react-qr-reader";
 import { addVisitor } from "../../actions/visitorActions";
 import { Button } from "../../Components/commons";
-import { Success } from "../../Components/ui";
 
 function VisitorQR() {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [scanSuccessful, setScanSuccessful] = useState(false);
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const userVaccine = JSON.parse(localStorage.getItem("userVaccine"));
@@ -27,7 +25,7 @@ function VisitorQR() {
     localStorage.removeItem("userInfo");
     localStorage.removeItem("userVaccine");
     localStorage.removeItem("userHDF");
-    setScanSuccessful(true);
+    navigate("/visitor/qr-scanner/success");
   };
 
   return (
@@ -37,16 +35,6 @@ function VisitorQR() {
         isLoading ? "blur-sm animate-pulse" : ""
       )}
     >
-      {scanSuccessful && (
-        <Success
-          message="Scan successful!"
-          returnOnClick={(e) => {
-            e.preventDefault();
-            navigate("/visitor/main");
-          }}
-        />
-      )}
-
       <div className="mx-5 py-10 ease-in-out duration-300 sm:mx-20 md:mx-36 lg:mx-60 xl:mx-96">
         <div className="p-5 rounded bg-slate-100">
           <div className="text-center">

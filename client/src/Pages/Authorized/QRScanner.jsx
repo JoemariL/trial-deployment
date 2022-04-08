@@ -6,7 +6,6 @@ import useAuth from "../../hooks/useAuth";
 import { scanQR } from "../../actions/userActions";
 import { getHdfDay } from "../../actions/userActions";
 import { Button } from "../../Components/commons";
-import { Success } from "../../Components/ui";
 
 function QRScanner() {
   const navigate = useNavigate();
@@ -14,7 +13,6 @@ function QRScanner() {
   const { auth } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [scanSuccessful, setScanSuccessful] = useState(false);
 
   useEffect(() => {
     (async function () {
@@ -40,7 +38,7 @@ function QRScanner() {
       console.log(response.message);
     } else {
       localStorage.removeItem("hdf");
-      setScanSuccessful(true);
+      navigate("/qr-scanner/success")
     }
   };
 
@@ -51,16 +49,6 @@ function QRScanner() {
         isLoading ? "blur-sm animate-pulse" : ""
       )}
     >
-      {scanSuccessful && (
-        <Success
-          message="Scan successful!"
-          returnOnClick={(e) => {
-            e.preventDefault();
-            navigate("/main");
-          }}
-        />
-      )}
-
       <div className="mx-5 py-10 ease-in-out duration-300 sm:mx-20 md:mx-36 lg:mx-60 xl:mx-96">
         <div className="p-5 rounded bg-slate-100">
           <div className="text-center">

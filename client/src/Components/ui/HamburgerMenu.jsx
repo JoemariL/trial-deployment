@@ -42,28 +42,35 @@ const HamburgerMenu = ({
             </Menu>
           )}
 
-          {!disabled ? (
-            <Menu position="vertical">
-              {visitor ? (
-                <MenuItem
-                  className="bg-slate-100"
-                  label="VIEW/EDIT MY INFORMATION"
-                  hover
-                  cursorPointer
-                  onClick={onVisitorReviewClick}
-                />
-              ) : (
-                <>
-                  {/* <MenuItem
+          <Menu position="vertical">
+            {visitor && (
+              <>
+                {disabled ? (
+                  <ListItem
+                    className="bg-slate-100"
+                    label="QR CODE SCANNED"
+                    subtitle="Your information is stored only for 14 days for COVID-19 tracking. After that time period, all your data and information are completely deleted."
+                  />
+                ) : (
+                  <MenuItem
+                    className="bg-slate-100"
+                    label="EDIT MY INFORMATION"
+                    hover
+                    cursorPointer
+                    onClick={onVisitorReviewClick}
+                  />
+                )}
+              </>
+            )}
+
+            {!visitor && (
+              <>
+                {/* <MenuItem
                     className="bg-slate-100"
                     label="USER SETTINGS"
                     hover
                     cursorPointer
                   /> */}
-                </>
-              )}
-
-              {!visitor && (
                 <MenuItem
                   className="bg-slate-100"
                   label="LOG OUT"
@@ -72,17 +79,9 @@ const HamburgerMenu = ({
                   onClick={onLogOutClick}
                   loading={loading}
                 />
-              )}
-            </Menu>
-          ) : (
-            <List position="vertical">
-              <ListItem
-                className="bg-slate-100"
-                label="QR CODE SCANNED"
-                subtitle="Your information is stored only for 14 days for COVID-19 tracking. After that time period, all your data and information are completely deleted."
-              />
-            </List>
-          )}
+              </>
+            )}
+          </Menu>
         </div>
       </div>
     </div>
