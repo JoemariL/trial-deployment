@@ -1,17 +1,17 @@
 export const VaccineFormInitialState = {
-  vacStatus: "",
-  vacDate: "",
-  vacSerial: "",
+  vaccine_status: "",
+  vaccine_date: "",
+  vaccine_serial_no: "",
 };
 
-export const VaccinFormValidations = [
-  ({ vacDate }) =>
-    isRequired(vacDate) || {
-      vacDate: "Please enter your date of last dose of your vaccine.",
+export const VaccineFormValidations = [
+  ({ vaccine_date }) =>
+    isRequired(vaccine_date) || {
+      vaccine_date: "Please enter your date of last dose of your vaccine.",
     },
-  ({ vacSerial }) =>
-    isRequired(vacSerial) || {
-      vacSerial: "Please enter your vaccination card serial no.",
+  ({ vaccine_serial_no }) =>
+    isRequired(vaccine_serial_no) || {
+      vaccine_serial_no: "Please enter your vaccination card serial no.",
     },
 ];
 

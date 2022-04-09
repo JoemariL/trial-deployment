@@ -93,13 +93,12 @@ const VisitorHDFModule = () => {
     let hdf = JSON.parse(localStorage.getItem("userHDF"));
     if (hdf) {
       setFormValues(hdf);
-    }
-    // eslint-disable-next-line no-lone-blocks
-    {
+    } else {
       setFormValues(formValues);
     }
+    // eslint-disable-next-line no-lone-blocks
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setFormValues]);
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -1,30 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import classnames from "classnames";
 import { updateVaccine } from "../../../actions/userActions";
 import useForm from "../../../hooks/useForm";
-import { VaccineFormInitialState, VaccinFormValidations } from "./vaccine-form";
+import { VaccineFormInitialState, VaccineFormValidations } from "./vaccine-form";
 import { Input, Button, RadioButton } from "../../../Components/commons";
+import { getUserData } from "../../../actions/userActions";
 
 const VaccineModule = () => {
-  const { changeHandler, formValues } = useForm(
+  const { changeHandler, formValues, setFormValues } = useForm(
     VaccineFormInitialState,
-    VaccinFormValidations
+    VaccineFormValidations
   );
 
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    (async function () {
+      const user = await getUserData()
+      const vaccine = user.vaccination_details[0]
+      if(vaccine) {
+        setFormValues(vaccine)
+      } else {
+        setFormValues(VaccineFormInitialState)
+      }
+    })()
+  }, [])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setIsLoading(true);
-    let { vacStatus, vacDate: vaccineDate, vacSerial } = formValues;
+    let { vaccine_status, vaccine_date: vaccineDate, vaccine_serial_no } = formValues;
     let vacDate = new Date(vaccineDate);
 
-    if (vacStatus === "NOT VACCINATED") {
-      const response = await updateVaccine({ vacStatus });
+    if (vaccine_status === "NOT VACCINATED") {
+      const response = await updateVaccine({ vaccine_status });
 
       if (response.hasOwnProperty("message")) {
         alert(response.message);
@@ -35,7 +48,7 @@ const VaccineModule = () => {
         navigate("/vaccine");
       }
     } else {
-      const response = await updateVaccine({ vacStatus, vacDate, vacSerial });
+      const response = await updateVaccine({ vaccine_status, vaccine_date: vacDate, vaccine_serial_no });
 
       if (response.hasOwnProperty("message")) {
         alert(response.message);
@@ -64,22 +77,33 @@ const VaccineModule = () => {
 
           <div className="flex flex-col space-y-3" onChange={changeHandler}>
             <RadioButton
-              name="vacStatus"
-              id="vacStatus"
+              name="vaccine_status"
+              id="vaccine_status"
               value="FULLY VACCINATED"
               label="FULLY VACCINATED"
+              checked={
+                formValues?.vaccine_status === "FULLY VACCINATED" ? true : false
+              }
             />
             <RadioButton
-              name="vacStatus"
-              id="vacStatus"
+              name="vaccine_status"
+              id="vaccine_status"
               value="PARTIALLY VACCINATED"
               label="PARTIALLY VACCINATED"
+              checked={
+                formValues?.vaccine_status === "PARTIALLY VACCINATED"
+                  ? true
+                  : false
+              }
             />
             <RadioButton
-              name="vacStatus"
-              id="vacStatus"
+              name="vaccine_status"
+              id="vaccine_status"
               value="NOT VACCINATED"
               label="NOT VACCINATED"
+              checked={
+                formValues?.vaccine_status === "NOT VACCINATED" ? true : false
+              }
             />
           </div>
         </div>
@@ -87,7 +111,7 @@ const VaccineModule = () => {
         <div
           className={classnames(
             "space-y-5",
-            formValues.vacStatus === "NOT VACCINATED" ? "blur-sm" : ""
+            formValues?.vaccine_status === "NOT VACCINATED" ? "blur-sm" : ""
           )}
         >
           <div className="flex flex-col space-y-3">
@@ -97,13 +121,13 @@ const VaccineModule = () => {
               &nbsp; OF A COVID-19 VACCINE?
             </p>
             <Input
-              id="vacDate"
-              name="vacDate"
+              id="vaccine_date"
+              name="vaccine_date"
               type="date"
               required
               onChange={changeHandler}
               disabled={
-                formValues.vacStatus === "NOT VACCINATED" ? true : false
+                formValues?.vaccine_status === "NOT VACCINATED" ? true : false
               }
             />
           </div>
@@ -111,13 +135,14 @@ const VaccineModule = () => {
           <div className="flex flex-col">
             <span className="font-bold">VACCINATION SERIAL NO.</span>
             <Input
-              id="vacSerial"
-              name="vacSerial"
+              id="vaccine_serial_no"
+              name="vaccine_serial_no"
               type="text"
               required
               onChange={changeHandler}
+              value={formValues?.vaccine_serial_no ? formValues.vaccine_serial_no : ""}
               disabled={
-                formValues.vacStatus === "NOT VACCINATED" ? true : false
+                formValues?.vaccine_status === "NOT VACCINATED" ? true : false
               }
             />
           </div>

@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 const config = {
   headers: {
     "Content-Type": "application/json",
-    authorization: "Bearer " + Cookies.get("accessToken"),
+    "authorization": "Bearer " + Cookies.get("accessToken"),
   },
 };
 
@@ -30,9 +30,9 @@ export const getRefreshToken = async () => {
 
 export const updateVaccine = async (payload) => {
   const body = JSON.stringify({
-    vaccineStatus: payload.vacStatus,
-    vaccineDate: payload.vacDate,
-    vaccineSerial: payload.vacSerial,
+    vaccineStatus: payload.vaccine_status,
+    vaccineDate: payload.vaccine_date,
+    vaccineSerial: payload.vaccine_serial_no,
   });
   return API.post("/user/vaccination", body, config)
     .then(() => {

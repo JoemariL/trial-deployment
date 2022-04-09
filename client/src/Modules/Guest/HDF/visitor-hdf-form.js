@@ -1,6 +1,6 @@
 export const VisitorHDFormInitialState = {
-    covid_exposure: false,
-    covid_positive: false,
+    covid_exposure: null,
+    covid_positive: null,
     fever: false,
     cough: false,
     cold: false,
