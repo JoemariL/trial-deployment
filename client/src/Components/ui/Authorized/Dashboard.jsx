@@ -2,7 +2,7 @@ import classnames from "classnames";
 import { ImCheckmark, ImCross } from "react-icons/im";
 import { MdQrCodeScanner } from "react-icons/md";
 import { RiSyringeFill, RiHealthBookFill } from "react-icons/ri";
-import { Icon, Menu, MenuItem, Button } from "../../commons";
+import { Icon, Menu, MenuItem, Button, ListItem } from "../../commons";
 
 const Dashboard = ({
   onClickHDF = () => {},
@@ -16,18 +16,20 @@ const Dashboard = ({
 }) => {
   return (
     <div className="space-y-5">
-      <div
-        className={classnames(
-          "rounded bg-slate-50 shadow-sm",
-          loading ? "blur-sm animate-pulse" : ""
-        )}
-      >
+      <ListItem
+        className={classnames(loading ? "blur-sm animate-pulse" : "")}
+        label="NOTE"
+        subtitle="Fill out your Health Declartion Form and Vaccination Profile first in order to scan the QR codes displayed in the gates of the campus."
+      />
+
+      <div className="rounded bg-slate-50 shadow-sm">
         <Menu position="vertical">
           <MenuItem
+            className={classnames(loading ? "blur-sm animate-pulse" : "")}
             icon={
               <Icon
                 background="rounded-full"
-                className="bg-orange-400 text-white"
+                className="bg-red-400 text-white"
                 icon={<RiHealthBookFill className="h-4 w-4" />}
               />
             }
@@ -39,6 +41,7 @@ const Dashboard = ({
           />
 
           <MenuItem
+            className={classnames(loading ? "blur-sm animate-pulse" : "")}
             icon={
               <Icon
                 background="rounded-full"
@@ -63,7 +66,7 @@ const Dashboard = ({
           )}
         >
           <Menu position="vertical">
-            <MenuItem label="STATUS" />
+            <MenuItem label="YOUR ENTRY STATUS" />
 
             <MenuItem
               className={

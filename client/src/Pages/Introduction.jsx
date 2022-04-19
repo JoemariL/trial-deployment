@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUserGraduate, FaUserAlt } from "react-icons/fa";
 import { AppLogo } from "../Components/ui";
 import { Button } from "../Components/commons";
 
@@ -14,7 +13,6 @@ function Introduction() {
 
         <div className="w-full px-16 flex flex-col gap-y-3">
           <Button
-            icon={<FaUserGraduate className="h-4 w-4" />}
             buttonStyle="primary"
             label="Login as User"
             roundedFull
@@ -24,7 +22,6 @@ function Introduction() {
             }}
           />
           <Button
-            icon={<FaUserAlt className="h-4 w-4" />}
             buttonStyle="secondary"
             label="Continue as Guest"
             roundedFull

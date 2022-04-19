@@ -4,7 +4,6 @@ import RequireAuth from "./context/RequireAuth";
 import VisitorAuth from "./context/VisitorRoute";
 import NoAuth from "./context/NoAuth";
 import { Layout } from "./Components/index";
-import "./App.css";
 import { Introduction } from "./Pages";
 import {
   HDF,
@@ -24,6 +23,7 @@ import {
   VisitorQR,
   VisitorQRSuccess,
 } from "./Pages/Guest";
+import "./App.css";
 
 function App() {
   return (

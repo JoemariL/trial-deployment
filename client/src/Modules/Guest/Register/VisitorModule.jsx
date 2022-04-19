@@ -102,7 +102,7 @@ const VisitorModule = ({ onNext = () => {} }) => {
           </div>
         </div>
 
-        <Button label="Next" type="submit" roundedFull loading={isLoading} />
+        <Button label="Next" type="submit" loading={isLoading} />
       </form>
     </>
   );

@@ -38,7 +38,7 @@ function QRScanner() {
       console.log(response.message);
     } else {
       localStorage.removeItem("hdf");
-      navigate("/qr-scanner/success")
+      navigate("/qr-scanner/success");
     }
   };
 
@@ -50,7 +50,7 @@ function QRScanner() {
       )}
     >
       <div className="mx-5 py-10 ease-in-out duration-300 sm:mx-20 md:mx-36 lg:mx-60 xl:mx-96">
-        <div className="p-5 rounded bg-slate-100">
+        <div className="py-5 px-1 rounded bg-slate-100">
           <div className="text-center">
             <span>Align QR Code to scan.</span>
           </div>

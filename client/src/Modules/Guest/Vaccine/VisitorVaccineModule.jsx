@@ -136,7 +136,7 @@ const VisitorVaccineModule = ({ onNext = () => {} }) => {
           </div>
         </div>
 
-        <Button label="Next" type="submit" loading={isLoading} roundedFull />
+        <Button label="Next" type="submit" loading={isLoading} />
       </form>
     </>
   );

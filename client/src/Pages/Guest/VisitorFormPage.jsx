@@ -35,7 +35,7 @@ function VisitorFormPage() {
 
           <div className="mx-5 py-20 flex flex-col space-y-10 ... ease-in-out duration-300 sm:mx-20 md:mx-36 lg:mx-60 xl:mx-96">
             <VisitorModule onNext={nextStep} />
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
+            <div className="mx-16 bg-gray-200 rounded-full h-2.5">
               <div
                 className="bg-blue-600 h-2.5 rounded-full ease-in-out "
                 style={{ width: "33.33%" }}
@@ -61,7 +61,7 @@ function VisitorFormPage() {
 
           <div className="mx-5 py-20 flex flex-col space-y-10 ... ease-in-out duration-300 sm:mx-20 md:mx-36 lg:mx-60 xl:mx-96">
             <VisitorVaccineModule onNext={nextStep} />
-            <div className="w-full bg-gray-200 rounded-full h-2.5 ">
+            <div className="mx-16 bg-gray-200 rounded-full h-2.5 ">
               <div
                 className="bg-blue-600 h-2.5 rounded-full ease-in-out "
                 style={{ width: "66.66%" }}
@@ -87,7 +87,7 @@ function VisitorFormPage() {
 
           <div className="mx-5 py-20 flex flex-col space-y-10 ... ease-in-out duration-300 sm:mx-20 md:mx-36 lg:mx-60 xl:mx-96">
             <VisitorHDFModule />
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
+            <div className="mx-16 bg-gray-200 rounded-full h-2.5">
               <div
                 className="bg-blue-600 h-2.5 rounded-full ease-in-out"
                 style={{ width: "100%" }}

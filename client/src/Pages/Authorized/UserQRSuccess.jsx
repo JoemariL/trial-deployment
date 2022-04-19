@@ -18,9 +18,14 @@ function UserQRSuccess() {
         </div>
 
         <div>
-          <span className="text-xl font-bold underline underline-offset-2 decoration-blue-900">
-            QR CODE SCANNED SUCCESSFULLY!
-          </span>
+          <p className="text-center">
+            <span className="text-xl font-bold underline underline-offset-2 decoration-blue-900">
+              QR CODE SCANNED SUCCESSFULLY!
+            </span>
+            <br />
+            Your Health Declaration Form is now sent to the Triage Team of Saint
+            Louis University.
+          </p>
         </div>
 
         <div className="my-10 px-24 w-full">

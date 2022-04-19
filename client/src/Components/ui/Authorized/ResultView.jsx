@@ -27,7 +27,7 @@ const ResultView = ({
         <ListItem
           className="bg-blue-900 rounded-full"
           icon={<Icon icon={<GoReport className="h-6 w-6" />} />}
-          label="Entry result"
+          label="ENTRY RESULT"
           textColor="white"
         />
 
@@ -56,7 +56,7 @@ const ResultView = ({
               />
             }
             label={hdfTimeCreated}
-            subtitle="TIME HDF CREATED"
+            subtitle="Date & time HDF created"
           />
           <ListItem
             icon={
@@ -66,29 +66,29 @@ const ResultView = ({
               />
             }
             label={campusEntered !== "" ? campusEntered : "--"}
-            subtitle="TIME CAMPUS ENTERED"
+            subtitle="Date & time campus entered"
           />
 
           <ListItem
             icon={
               <Icon
-                className="bg-blue-800 text-white"
+                className="bg-blue-400 text-white"
                 icon={<FaSchool className="h-4 w-4" />}
               />
             }
             label={campusName !== "" ? campusName : "--"}
-            subtitle="NAME OF THE CAMPUS YOU ENTERED"
+            subtitle="Name of the campus entered"
           />
 
           <ListItem
             icon={
               <Icon
-                className="bg-yellow-600 text-white"
+                className="bg-gray-400 text-white"
                 icon={<GiGate className="h-4 w-4" />}
               />
             }
             label={gate !== "" ? gate : "--"}
-            subtitle="GATE ENTERED"
+            subtitle="Name of the gate entered"
           />
         </div>
       </List>
