@@ -1,5 +1,6 @@
 export const RegisterFormInitialState = {
   userType: "STUDENT",
+  department: "SAMCIS",
   firstName: "",
   lastName: "",
   age: "",

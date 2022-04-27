@@ -25,7 +25,7 @@ function VisitorFormPage() {
       return (
         <div className="text-sm ... sm:text-base">
           <Formbar
-            headerText="Basic Information"
+            headerText="Guest / Basic Information"
             fixedTop
             onReturnClick={(e) => {
               e.preventDefault();
@@ -51,7 +51,7 @@ function VisitorFormPage() {
       return (
         <div className="text-sm ... sm:text-base">
           <Formbar
-            headerText="Vaccination Information"
+            headerText="Guest / Vaccination Information"
             fixedTop
             onReturnClick={(e) => {
               e.preventDefault();
@@ -77,7 +77,7 @@ function VisitorFormPage() {
       return (
         <div className="text-sm ... sm:text-base">
           <Formbar
-            headerText="Health Declaration  Form"
+            headerText="Guest / Health Declaration Form"
             fixedTop
             onReturnClick={(e) => {
               e.preventDefault();

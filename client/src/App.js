@@ -9,6 +9,7 @@ import {
   HDF,
   HDFormPage,
   Login,
+  UpdateProfilePage,
   Main,
   Register,
   Vaccine,
@@ -53,6 +54,11 @@ function App() {
             </Route>
 
             <Route element={<RequireAuth />}>
+              <Route
+                exact
+                path="/profile/update"
+                element={<UpdateProfilePage />}
+              />
               <Route exact path="/main" element={<Main />} />
               <Route exact path="/hdf" element={<HDF />} />
               <Route exact path="/hdf/fillout" element={<HDFormPage />} />

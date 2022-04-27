@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const Float = require('mongoose-float').loadType(mongoose)
 
 const hdfData = mongoose.Schema({
     entry_date: {
@@ -22,7 +21,8 @@ const hdfData = mongoose.Schema({
         default: false
     },
     destination: {
-        type: String
+        type: String,
+        default: null
     },
     covid_exposure: {
         type: Boolean
@@ -65,11 +65,13 @@ const hdfData = mongoose.Schema({
 const userSchema = mongoose.Schema({
     first_name: {
         type: String,
-        uppercase: true
+        uppercase: true,
+        immutable: true,
     },
     last_name: {
         type: String,
-        uppercase: true
+        uppercase: true,
+        immutable: true
     },
     password: {
         type: String
@@ -88,9 +90,14 @@ const userSchema = mongoose.Schema({
         unique: true,
         immutable: true
     },
-    user_type: {
+    department: {
         type: String,
         uppercase: true
+    },
+    user_type: {
+        type: String,
+        uppercase: true,
+        immutable: true
     },
     vaccination_details: { type: Array , "default": [] },
     hdf_data: [hdfData]

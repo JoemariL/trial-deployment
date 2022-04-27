@@ -47,7 +47,8 @@ const Input = ({
           "h-12 px-2 inline-flex items-center border-2 rounded border-gray-300 bg-white focus-within:border-blue-800",
           error
             ? "border-red-600 focus-within:border-red-600"
-            : "border-gray-300"
+            : "border-gray-300",
+          disabled ? "bg-slate-100" : ""
         )}
       >
         <input

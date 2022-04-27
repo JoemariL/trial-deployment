@@ -17,3 +17,5 @@ export { default as VaccineView } from "./Authorized/VaccineView";
 // Result components.
 export { default as ResultView } from "./Authorized/ResultView";
 export { default as GuestResult } from "./Guest/GuestResult";
+
+export { default as Success } from "./Success";

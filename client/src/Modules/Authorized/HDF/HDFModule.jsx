@@ -2,17 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../../hooks/useForm";
 import { generateHdf } from "../../../actions/userActions";
-import { HDFormInitialState, HDFormValidations } from "./hdf-form";
-import {
-  Input,
-  Button,
-  RadioButton,
-  Checkbox,
-} from "../../../Components/commons";
+import { HDFormInitialState } from "./hdf-form";
+import { Button, RadioButton, Checkbox } from "../../../Components/commons";
 
 const HDFModule = () => {
-  const { changeHandler, formValues, formErrors, isFormValid, inputTouched } =
-    useForm(HDFormInitialState, HDFormValidations);
+  const { changeHandler, formValues, isFormValid } =
+    useForm(HDFormInitialState);
 
   const navigate = useNavigate();
 
@@ -45,7 +40,6 @@ const HDFModule = () => {
 
     // TODO: Success message.
     if (response.hasOwnProperty("message")) {
-      alert(response?.message);
       setIsLoading(false);
     } else {
       setIsLoading(false);
@@ -167,25 +161,6 @@ const HDFModule = () => {
               label="NOT APPLICABLE"
             />
           </div>
-        </div>
-
-        <hr />
-
-        <div className="flex flex-col space-y-3">
-          <span className="text-lg">
-            What is your department or destination?
-          </span>
-
-          <Input
-            placeholder="Please enter your department or destination"
-            id="deptDestination"
-            name="deptDestination"
-            type="text"
-            subtitle="SAMCIS, SEA, etc."
-            onChange={changeHandler}
-            error={inputTouched.deptDestination && formErrors.deptDestination}
-            required
-          />
         </div>
 
         <Button

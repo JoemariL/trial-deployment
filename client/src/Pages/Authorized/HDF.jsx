@@ -23,12 +23,31 @@ function HDF() {
         setHdf({});
         setIsLoading(false);
       } else {
-        setHdf(user[0]);
+        const hdfStatus = user.map((payload) => {
+          return {
+            allowed: payload.allowed,
+            covid_exposure: payload.covid_exposure,
+            covid_positive: payload.covid_positive,
+            fever: payload.fever,
+            cough: payload.cough,
+            cold: payload.cold,
+            sore_throat: payload.sore_throat,
+            diff_breathing: payload.diff_breathing,
+            diarrhea: payload.diarrhea,
+            pregnant: payload.pregnant,
+            others: payload.others,
+          };
+        });
+
+        setHdf({
+          ...hdfStatus[0],
+        });
+
         setHasHDF(true);
         setIsLoading(false);
       }
     })();
-  }, [auth]);
+  }, []);
 
   const handleDribble = () => {
     setDribble(!dribble);
@@ -63,6 +82,11 @@ function HDF() {
           onHomeClick={(e) => {
             e.preventDefault();
             navigate("/main");
+          }}
+          onEditClick={(e) => {
+            e.preventDefault();
+            handleDribble();
+            navigate("/profile/update");
           }}
           onLogOutClick={logoutUser}
         />

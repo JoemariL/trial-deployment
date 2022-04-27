@@ -12,6 +12,7 @@ const TOKEN = require('../models/token')
 require('dotenv').config({ path: '../.env'})
 const { objectIDValidator } = require('../utils/validator')
 const { adminAccessToken, adminRefreshToken } = require('../middleware/jwt-helper')
+const adminAuth = require('../middleware/adminAuth')
 
 // LOGIN AN ADMIN.
 router.post("/admin/login", async (req, res) => {
@@ -27,6 +28,7 @@ router.post("/admin/login", async (req, res) => {
     try {
         const payload = {
             id: admin._id,
+            role: admin.role
         }
         const accessToken = await adminAccessToken(payload)
         const refreshToken = await adminRefreshToken(payload)
@@ -51,17 +53,28 @@ router.post("/admin/login", async (req, res) => {
     }
 })
 
-
 // REGISTER AN ADMIN.
 router.post("/admin/register", async (req, res) => {
-    const { username, password, role } = req.body
-    
-    let hashedPassword = await bcrypt.hash(password, 12)
-    const newAdmin = new ADMIN({
+    let newAdmin = null
+    if(process.env.NODE_ENV === "PRODUCTION") {
+        const { username, password } = req.body
+        const roleAdmin = res.admin
+        if(roleAdmin !== "SUPER-ADMIN") return res.sendStatus(403)
+        let hashedPassword = await bcrypt.hash(password, 12)
+        newAdmin = new ADMIN({
         username,
         password: hashedPassword,
         role
-    })
+        })
+    } else {
+        const { username, password, role } = req.body
+        let hashedPassword = await bcrypt.hash(password, 12)
+        newAdmin = new ADMIN({
+        username,
+        password: hashedPassword,
+        role
+        })
+    }
 
     try {
         await newAdmin.save()

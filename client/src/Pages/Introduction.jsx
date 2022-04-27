@@ -15,16 +15,14 @@ function Introduction() {
           <Button
             buttonStyle="primary"
             label="Login as User"
-            roundedFull
             onClick={(e) => {
               e.preventDefault();
               navigate("/login");
             }}
           />
           <Button
-            buttonStyle="secondary"
+            secondary
             label="Continue as Guest"
-            roundedFull
             onClick={(e) => {
               e.preventDefault();
               navigate("/visitor/fillout");

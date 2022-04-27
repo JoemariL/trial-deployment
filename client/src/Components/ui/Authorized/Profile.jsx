@@ -7,7 +7,7 @@ const Profile = ({ userFullName = "", userEmail = "", loading = false }) => {
     <div
       className={classnames(
         "w-full p-5 inline-flex items-center gap-x-5 bg-slate-100 rounded",
-        loading ? "blur-sm animate-pulse" : ""
+        loading && "blur-sm animate-pulse"
       )}
     >
       <Icon

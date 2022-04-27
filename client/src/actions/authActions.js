@@ -46,6 +46,7 @@ export const register = async (payload) => {
     homeAddress: payload.address,
     email: payload.email,
     userType: payload.userType,
+    department: payload.department
   });
   return API.post("/controller/user/register", body, config)
     .then(() => {

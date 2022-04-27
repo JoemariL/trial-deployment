@@ -5,6 +5,7 @@ export { default as Vaccine } from "./Vaccine";
 export { default as VaccineFormPage } from "./VaccineFormPage";
 export { default as Login } from "./Login";
 export { default as Register } from "./Register";
+export { default as UpdateProfilePage } from "./UpdateProfilePage"
 export { default as QRScanner } from "./QRScanner";
 export { default as UserQRSuccess } from "./UserQRSuccess";
 export { default as Result } from "./Result";

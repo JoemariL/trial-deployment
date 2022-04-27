@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require("mongoose")
-const moment = require('moment')
+const moment = require('moment-timezone')
 
 // MODEL IMPORT 
 const USERS = require('../models/users')
@@ -11,7 +11,7 @@ const SCHOOL = require('../models/school')
 // UTILS IMPORT 
 require('dotenv').config({ path: '../.env'})
 const { objectIDValidator } = require('../utils/validator')
-const { decryptJSON } = require('../utils/functions')
+const { decryptJSON, generateRandomKey } = require('../utils/functions')
 const { generateVisitorToken } = require('../middleware/jwt-helper')
 const { extractID } = require('../middleware/jwt-helper')
 
@@ -51,15 +51,15 @@ router.post("/generate", async (req, res) => {
         is_expired: true,
         createdAt
     }
-    let random = (Math.random() + 1).toString(36).substring(7)
     try {
+        const randomEmail = generateRandomKey(7)
         const user = new USERS({
             first_name,
             last_name,
             age,
             contact_number,
             home_address,
-            email_address: random,
+            email_address: randomEmail,
             user_type: "VISITOR",
             vaccination_details,
             hdf_data,
@@ -98,7 +98,7 @@ router.get("/get", async(req, res) => {
 
     try {
         const user = await USERS.findById(userUid).select('-password -__v -createdAt -updatedAt -email_address')
-        if(user.user_type != "VISITOR") return res.status(401)
+        if(user.user_type != "VISITOR") return res.sendStatus(401)
         if(!user) return res.status(404).json({ errors:{ message:'user not found' }})
         return res.status(200).json(user)
     } catch (error) {

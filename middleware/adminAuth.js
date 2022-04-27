@@ -11,6 +11,7 @@ module.exports = (req, res, next) => {
     if (token == null) return res.sendStatus(401)
     jwt.verify(token, process.env.ADMIN_ACCESS_KEY, (err, admin) => {
         if (err) return res.sendStatus(403)
+        res.admin = admin.role
         next()
     })
 }

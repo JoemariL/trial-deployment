@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import classnames from "classnames";
 import { updateVaccine } from "../../../actions/userActions";
 import useForm from "../../../hooks/useForm";
-import { VaccineFormInitialState, VaccineFormValidations } from "./vaccine-form";
+import {
+  VaccineFormInitialState,
+  VaccineFormValidations,
+} from "./vaccine-form";
 import { Input, Button, RadioButton } from "../../../Components/commons";
 import { getUserData } from "../../../actions/userActions";
 
@@ -19,21 +22,25 @@ const VaccineModule = () => {
 
   useEffect(() => {
     (async function () {
-      const user = await getUserData()
-      const vaccine = user.vaccination_details[0]
-      if(vaccine) {
-        setFormValues(vaccine)
+      const user = await getUserData();
+      const vaccine = user.vaccination_details[0];
+      if (vaccine) {
+        setFormValues(vaccine);
       } else {
-        setFormValues(VaccineFormInitialState)
+        setFormValues(VaccineFormInitialState);
       }
-    })()
-  }, [])
+    })();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setIsLoading(true);
-    let { vaccine_status, vaccine_date: vaccineDate, vaccine_serial_no } = formValues;
+    let {
+      vaccine_status,
+      vaccine_date: vaccineDate,
+      vaccine_serial_no,
+    } = formValues;
     let vacDate = new Date(vaccineDate);
 
     if (vaccine_status === "NOT VACCINATED") {
@@ -48,13 +55,15 @@ const VaccineModule = () => {
         navigate("/vaccine");
       }
     } else {
-      const response = await updateVaccine({ vaccine_status, vaccine_date: vacDate, vaccine_serial_no });
+      const response = await updateVaccine({
+        vaccine_status,
+        vaccine_date: vacDate,
+        vaccine_serial_no,
+      });
 
       if (response.hasOwnProperty("message")) {
-        alert(response.message);
         setIsLoading(false);
       } else {
-        alert("Your vaccine profile is updated!");
         setIsLoading(false);
         navigate("/vaccine");
       }
@@ -115,16 +124,11 @@ const VaccineModule = () => {
           )}
         >
           <div className="flex flex-col space-y-3">
-            <p>
-              WHEN IS YOUR &nbsp;
-              <span className="font-bold">LAST DOSE</span>
-              &nbsp; OF A COVID-19 VACCINE?
-            </p>
+            <span>ENTER THE DATE OF YOUR MOST RECENT SHOT</span>
             <Input
               id="vaccine_date"
               name="vaccine_date"
               type="date"
-              required
               onChange={changeHandler}
               disabled={
                 formValues?.vaccine_status === "NOT VACCINATED" ? true : false
@@ -133,14 +137,17 @@ const VaccineModule = () => {
           </div>
 
           <div className="flex flex-col">
-            <span className="font-bold">VACCINATION SERIAL NO.</span>
+            <span>ENTER YOUR VACCINATION CARD SERIAL NO.</span>
             <Input
               id="vaccine_serial_no"
               name="vaccine_serial_no"
               type="text"
-              required
               onChange={changeHandler}
-              value={formValues?.vaccine_serial_no ? formValues.vaccine_serial_no : ""}
+              value={
+                formValues?.vaccine_serial_no
+                  ? formValues.vaccine_serial_no
+                  : ""
+              }
               disabled={
                 formValues?.vaccine_status === "NOT VACCINATED" ? true : false
               }

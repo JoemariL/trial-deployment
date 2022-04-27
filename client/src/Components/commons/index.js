@@ -8,3 +8,4 @@ export { default as Menu } from "./Menu/Menu";
 export { default as MenuItem } from "./Menu/MenuItem";
 export { default as List } from "./List/List";
 export { default as ListItem } from "./List/ListItem";
+export { default as Alert } from "./Alert";

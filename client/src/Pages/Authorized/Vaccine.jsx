@@ -55,6 +55,11 @@ function Vaccine() {
             e.preventDefault();
             navigate("/main");
           }}
+          onEditClick={(e) => {
+            e.preventDefault();
+            handleDribble();
+            navigate("/profile/update");
+          }}
           onLogOutClick={logoutUser}
         />
       )}

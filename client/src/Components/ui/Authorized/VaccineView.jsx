@@ -13,8 +13,8 @@ const VaccineView = ({
   return (
     <div
       className={classnames(
-        "flex flex-col space-y-10",
-        loading ? "blur-sm animate-pulse" : ""
+        "flex flex-col space-y-10"
+        // loading ? "blur-sm animate-pulse" : ""
       )}
     >
       <List position="vertical">
@@ -27,12 +27,12 @@ const VaccineView = ({
 
         <div className="p-2 rounded space-y-3 bg-slate-100">
           <ListItem
-            className={classnames(loading ? "blur-sm animate-pulse" : "")}
+            // className={classnames(loading ? "blur-sm animate-pulse" : "")}
             label={hasVaccine ? vaccineStatus : "--"}
             subtitle="Vaccine status"
           />
           <ListItem
-            className={classnames(loading ? "blur-sm animate-pulse" : "")}
+            // className={classnames(loading ? "blur-sm animate-pulse" : "")}
             label={hasVaccine ? vaccineDate : "--"}
             subtitle={
               vaccineStatus === "NOT VACCINATED"
@@ -41,7 +41,7 @@ const VaccineView = ({
             }
           />
           <ListItem
-            className={classnames(loading ? "blur-sm animate-pulse" : "")}
+            // className={classnames(loading ? "blur-sm animate-pulse" : "")}
             label={hasVaccine ? vaccineSerial : "--"}
             subtitle={
               vaccineStatus === "NOT VACCINATED"
@@ -55,7 +55,6 @@ const VaccineView = ({
       <div className="px-16 col-span-2">
         <Button
           label="Manage"
-          buttonStyle="primary"
           type="button"
           roundedFull
           onClick={!loading ? onVaccineForm : undefined}

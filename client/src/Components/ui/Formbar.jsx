@@ -9,7 +9,6 @@ const Formbar = ({
   disabled = false,
   fixedTop = false,
   staticTop = false,
-  children,
 }) => {
   return (
     <div
@@ -24,7 +23,7 @@ const Formbar = ({
     >
       <div className="flex flex-row items-center gap-x-3">
         <button
-          className="rounded-full focus:outline-none hover:bg-slate-100"
+          className="rounded-full bg-slate-100 focus:outline-none hover:bg-slate-50"
           type="button"
           onClick={onReturnClick}
           disabled={disabled}
@@ -33,8 +32,6 @@ const Formbar = ({
         </button>
 
         <span className="text-lg font-bold">{headerText}</span>
-
-        {children}
       </div>
     </div>
   );

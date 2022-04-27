@@ -12,6 +12,7 @@ const Select = ({
   subtitle = "",
   asFormInput = false,
   onChange = () => {},
+  disabled = false,
 }) => {
   const [selectedItem, setSelectedItem] = useState(items[0]);
 
@@ -40,6 +41,7 @@ const Select = ({
           className="relative"
           value={selectedItem}
           onChange={onChangeCb}
+          disabled={disabled}
         >
           {({ open }) => (
             <>

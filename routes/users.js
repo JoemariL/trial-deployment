@@ -10,9 +10,10 @@ const USERS = require('../models/users')
 // UTILS IMPORT
 const { objectIDValidator } = require('../utils/validator')
 const { extractID } = require('../middleware/jwt-helper')
+const auth = require('../middleware/auth')
 
 // GET A USER PROFILE. 
-router.get("/get", async (req, res) => {
+router.get("/get", auth, async (req, res) => {
     
     if(req.cookies.refreshToken === null || req.cookies.refreshToken === undefined) { 
         res.clearCookie('accessToken')
@@ -33,7 +34,7 @@ router.get("/get", async (req, res) => {
 })
 
 // CHANGE PASSWORD FOR USER.
-router.patch("/update/password", async (req, res) => {
+router.patch("/update/password", auth, async (req, res) => {
 
     if(req.cookies.refreshToken === null || req.cookies.refreshToken === undefined) { 
         res.clearCookie('accessToken')
@@ -69,7 +70,7 @@ router.patch("/update/password", async (req, res) => {
 })
 
 // UPDATES USER INFO.
-router.patch("/update", async (req, res) => {
+router.patch("/update", auth, async (req, res) => {
 
     if(req.cookies.refreshToken === null || req.cookies.refreshToken === undefined) { 
         res.clearCookie('accessToken')
@@ -80,14 +81,15 @@ router.patch("/update", async (req, res) => {
     const idCheck = objectIDValidator(userUid)
     if (!idCheck) return res.status(400).json({ errors: { message:'invalid user ID' }})
 
-    const { age, contactNumber, homeAddress } = req.body
+    const { age, contactNumber, homeAddress, department } = req.body
     const user = await USERS.findById(userUid).select('-password -__v -createdAt -updatedAt')
     if(!user) return res.status(404).json({ errors:{ message:'user not found' }})
 
     const userDetails = {
-        age: age,
+        age,
         contact_number: contactNumber,
         home_address: homeAddress,
+        department
     }
     const uid = user._id
     try {
@@ -104,7 +106,7 @@ router.patch("/update", async (req, res) => {
 })
 
 // ADDS AND UPDATE VACCINATION RECORD OF A USER.
-router.post("/vaccination", async (req, res) => {
+router.post("/vaccination", auth, async (req, res) => {
 
     if(req.cookies.refreshToken === null || req.cookies.refreshToken === undefined) { 
         res.clearCookie('accessToken')

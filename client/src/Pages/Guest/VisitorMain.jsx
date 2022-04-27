@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
+import { MdQrCodeScanner } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { getVisitor } from "../../actions/visitorActions";
 import {
@@ -8,6 +9,7 @@ import {
   GuestResult,
   GuestProfile,
 } from "../../Components/ui";
+import { Button } from "../../Components/commons";
 
 function VisitorMain() {
   const navigate = useNavigate();
@@ -39,7 +41,7 @@ function VisitorMain() {
     setDribble(!dribble);
   };
 
-  const { allowed, createdAt, entry_date, gate_info, entry_campus } = hdf;
+  const { allowed, entry_date } = hdf;
 
   return (
     <div className="relative text-xs ... sm:text-base">
@@ -68,25 +70,20 @@ function VisitorMain() {
       <div className="my-10 mx-5 space-y-5 ... ease-in-out duration-300 sm:mx-20 md:mx-36 lg:mx-60 xl:mx-96">
         <GuestResult
           entryStatus={allowed}
-          hdfTimeCreated={
-            createdAt
-              ? moment(createdAt).format("MMMM Do YYYY, h:mm:ss A")
-              : "--"
-          }
-          campusEntered={
-            entry_date
-              ? moment(entry_date).format("MMMM Do YYYY, h:mm:ss A")
-              : "--"
-          }
-          campusName={entry_campus}
-          gate={gate_info}
-          loading={isLoading}
-          visitor
-          onClickQR={(e) => {
-            e.preventDefault();
-            navigate("/visitor/qr-scanner");
-          }}
+          date={moment(entry_date).format("MMMM Do YYYY")}
         />
+
+        <div className="px-16">
+          <Button
+            icon={<MdQrCodeScanner className="h-6 w-6" />}
+            label="SCAN QR CODE"
+            roundedFull
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/visitor/qr-scanner");
+            }}
+          />
+        </div>
       </div>
     </div>
   );

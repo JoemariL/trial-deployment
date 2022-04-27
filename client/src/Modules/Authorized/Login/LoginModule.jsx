@@ -11,6 +11,8 @@ const LoginModule = () => {
   const { setAuth } = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -35,10 +37,11 @@ const LoginModule = () => {
 
     // TODO: SUCCESS, ERROR, LOADING.
     if (response.hasOwnProperty("message")) {
-      alert(response.message);
-    } else { 
+      setError(response?.message);
+    } else {
       setAuth({ access: response });
       navigate("/main", { replace: true });
+      window.location.reload();
     }
     isMounted.current = false;
   };
@@ -53,6 +56,7 @@ const LoginModule = () => {
             name="emailAddres"
             type="email"
             onChange={handleEmail}
+            error={error}
             required
           />
 
