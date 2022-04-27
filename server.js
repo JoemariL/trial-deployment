@@ -8,7 +8,6 @@ const http = require("http");
 
 // UTIL IMPORTS.
 require("dotenv").config();
-const auth = require("./middleware/auth");
 const connectDB = require("./config/database");
 
 const app = express();
@@ -19,6 +18,8 @@ app.use(cookieParser());
 const whitelist = [
   "http://localhost:3000",
   "http://localhost:8080",
+  "http://localhost:5000",
+  "http://localhost:5001",
   "https://slu-triage-app.herokuapp.com",
 ];
 
